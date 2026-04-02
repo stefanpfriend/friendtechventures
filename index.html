@@ -3,934 +3,1069 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FriendTech Ventures — AI Strategy & Automation for Teams That Build</title>
-<meta name="description" content="FriendTech Ventures designs AI operations and product strategy for teams drowning in coordination. Strategy sprints, automation builds, and fractional product leadership.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>FriendTech Ventures — Build. Ship. Operate.</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg-primary: #0C0C0E;
-  --bg-secondary: #131316;
-  --bg-tertiary: #1A1A1F;
-  --bg-card: #16161A;
-  --text-primary: #E8E6E3;
-  --text-secondary: #9B9A97;
-  --text-muted: #5E5D5B;
-  --accent: #7B8AFF;
-  --accent-secondary: #A78BFA;
-  --accent-dim: rgba(123, 138, 255, 0.12);
-  --accent-glow: rgba(123, 138, 255, 0.08);
-  --border: rgba(255,255,255,0.06);
-  --border-hover: rgba(255,255,255,0.12);
-  --font-display: 'DM Serif Display', Georgia, serif;
-  --font-body: 'Instrument Sans', -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-  --max-width: 1200px;
-  --section-pad: clamp(80px, 10vw, 140px);
-}
+  :root {
+    --bg: #08080c;
+    --bg-elevated: #0e0e14;
+    --bg-surface: #14141e;
+    --bg-card: #111119;
+    --text-primary: #e8e6e1;
+    --text-secondary: #9a9890;
+    --text-dim: #555550;
+    --accent: #8b7ec8;
+    --accent-glow: #a594f9;
+    --accent-warm: #c4a0f7;
+    --accent-muted: rgba(139, 126, 200, 0.08);
+    --accent-border: rgba(139, 126, 200, 0.18);
+    --border-subtle: rgba(255,255,255,0.04);
+    --border-light: rgba(255,255,255,0.07);
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'Instrument Sans', -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+    --max-w: 1240px;
+  }
 
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; font-size: 16px; }
+  html { scroll-behavior: smooth; }
 
-body {
-  font-family: var(--font-body);
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
 
-::selection { background: var(--accent); color: #fff; }
-
-a { color: inherit; text-decoration: none; }
-
-.container { max-width: var(--max-width); margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
-
-/* ---- NAV ---- */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  padding: 20px 0;
-  background: rgba(12,12,14,0.85);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-  transition: padding 0.3s;
-}
-nav.scrolled { padding: 12px 0; }
-.nav-inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 clamp(20px, 4vw, 48px);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.nav-logo {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--text-primary);
-}
-.nav-logo span { color: var(--accent); }
-.nav-links { display: flex; gap: 32px; align-items: center; }
-.nav-links a {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  letter-spacing: 0.02em;
-  transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--text-primary); }
-.nav-cta {
-  font-size: 0.8rem !important;
-  font-weight: 600 !important;
-  color: #fff !important;
-  background: var(--accent);
-  padding: 10px 24px;
-  border-radius: 6px;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(123,138,255,0.35); }
-
-/* mobile nav */
-.nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
-.nav-toggle span { display: block; width: 20px; height: 2px; background: var(--text-primary); margin: 4px 0; transition: 0.3s; }
-
-/* ---- HERO ---- */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding-top: 100px;
-  position: relative;
-  overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -30%; right: -20%;
-  width: 800px; height: 800px;
-  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-  pointer-events: none;
-}
-.hero-content { position: relative; z-index: 1; max-width: 820px; }
-.hero-label {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 28px;
-  opacity: 0; animation: fadeUp 0.6s 0.2s forwards;
-}
-.hero h1 {
-  font-family: var(--font-display);
-  font-size: clamp(2.8rem, 6vw, 4.8rem);
-  font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  margin-bottom: 28px;
-  opacity: 0; animation: fadeUp 0.6s 0.4s forwards;
-}
-.hero h1 em {
-  font-style: italic;
-  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.hero-sub {
-  font-size: clamp(1.05rem, 1.8vw, 1.2rem);
-  color: var(--text-secondary);
-  max-width: 580px;
-  line-height: 1.7;
-  margin-bottom: 44px;
-  opacity: 0; animation: fadeUp 0.6s 0.6s forwards;
-}
-.hero-actions {
-  display: flex; gap: 16px; flex-wrap: wrap;
-  opacity: 0; animation: fadeUp 0.6s 0.8s forwards;
-}
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-family: var(--font-body);
-  font-size: 0.9rem; font-weight: 600;
-  color: #fff;
-  background: var(--accent);
-  padding: 14px 32px;
-  border-radius: 8px;
-  border: none; cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(123,138,255,0.35); }
-.btn-secondary {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-family: var(--font-body);
-  font-size: 0.9rem; font-weight: 500;
-  color: var(--text-primary);
-  background: transparent;
-  padding: 14px 32px;
-  border-radius: 8px;
-  border: 1px solid var(--border-hover);
-  cursor: pointer;
-  transition: border-color 0.2s, background 0.2s;
-}
-.btn-secondary:hover { border-color: var(--text-muted); background: var(--bg-tertiary); }
-
-/* ---- PROBLEM ---- */
-.problem {
-  padding: var(--section-pad) 0;
-  border-top: 1px solid var(--border);
-}
-.problem-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
-}
-.problem-left .section-label {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 24px;
-}
-.problem-left h2 {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 3.5vw, 2.8rem);
-  line-height: 1.15;
-  margin-bottom: 24px;
-}
-.problem-left p {
-  color: var(--text-secondary);
-  font-size: 1.05rem;
-  line-height: 1.7;
-}
-.pain-cards { display: flex; flex-direction: column; gap: 16px; }
-.pain-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 24px 28px;
-  transition: border-color 0.3s, transform 0.2s;
-}
-.pain-card:hover { border-color: var(--border-hover); transform: translateX(4px); }
-.pain-card .pain-icon {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--accent);
-  letter-spacing: 0.1em;
-  margin-bottom: 8px;
-}
-.pain-card h4 {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-.pain-card p {
-  font-size: 0.88rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-}
-
-/* ---- SERVICES ---- */
-.services {
-  padding: var(--section-pad) 0;
-  border-top: 1px solid var(--border);
-}
-.services .section-header {
-  max-width: 600px;
-  margin-bottom: 64px;
-}
-.section-label {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 20px;
-}
-.section-header h2 {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 3.5vw, 2.8rem);
-  line-height: 1.15;
-  margin-bottom: 16px;
-}
-.section-header p {
-  color: var(--text-secondary);
-  font-size: 1.05rem;
-  line-height: 1.7;
-}
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-.service-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 36px 32px;
-  position: relative;
-  overflow: hidden;
-  transition: border-color 0.3s, transform 0.2s;
-}
-.service-card:hover { border-color: var(--border-hover); transform: translateY(-4px); }
-.service-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.service-card:hover::before { opacity: 1; }
-.service-number {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--accent);
-  letter-spacing: 0.15em;
-  margin-bottom: 20px;
-}
-.service-card h3 {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  margin-bottom: 12px;
-}
-.service-card .service-desc {
-  color: var(--text-secondary);
-  font-size: 0.92rem;
-  line-height: 1.65;
-  margin-bottom: 24px;
-}
-.service-deliverables {
-  list-style: none;
-  display: flex; flex-direction: column; gap: 8px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border);
-}
-.service-deliverables li {
-  font-size: 0.82rem;
-  color: var(--text-secondary);
-  padding-left: 16px;
-  position: relative;
-}
-.service-deliverables li::before {
-  content: '→';
-  position: absolute;
-  left: 0;
-  color: var(--accent);
-  font-size: 0.75rem;
-}
-.service-timeline {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  letter-spacing: 0.1em;
-  margin-top: 24px;
-  text-transform: uppercase;
-}
-
-/* ---- HOW IT WORKS ---- */
-.how {
-  padding: var(--section-pad) 0;
-  border-top: 1px solid var(--border);
-  background: var(--bg-secondary);
-}
-.how .section-header {
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto 64px;
-}
-.steps {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2px;
-}
-.step {
-  background: var(--bg-primary);
-  padding: 36px 28px;
-  position: relative;
-}
-.step:first-child { border-radius: 12px 0 0 12px; }
-.step:last-child { border-radius: 0 12px 12px 0; }
-.step-num {
-  font-family: var(--font-display);
-  font-size: 2.4rem;
-  color: var(--accent-secondary);
-  opacity: 0.4;
-  margin-bottom: 16px;
-}
-.step h4 {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-.step p {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-}
-
-/* ---- PROOF / CASE STUDY ---- */
-.proof {
-  padding: var(--section-pad) 0;
-  border-top: 1px solid var(--border);
-}
-.proof-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: clamp(40px, 5vw, 64px);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-}
-.proof-content .section-label { margin-bottom: 16px; }
-.proof-content h3 {
-  font-family: var(--font-display);
-  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
-  line-height: 1.2;
-  margin-bottom: 20px;
-}
-.proof-content p {
-  color: var(--text-secondary);
-  font-size: 0.95rem;
-  line-height: 1.7;
-  margin-bottom: 16px;
-}
-.proof-metrics {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-}
-.metric {
-  background: var(--bg-primary);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 28px;
-  text-align: center;
-}
-.metric .metric-value {
-  font-family: var(--font-display);
-  font-size: 2.4rem;
-  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1;
-  margin-bottom: 8px;
-}
-.metric .metric-label {
-  font-size: 0.78rem;
-  color: var(--text-secondary);
-  letter-spacing: 0.02em;
-}
-
-/* ---- COMPARISON ---- */
-.compare {
-  padding: var(--section-pad) 0;
-  border-top: 1px solid var(--border);
-}
-.compare .section-header {
-  max-width: 600px;
-  margin-bottom: 48px;
-}
-.compare-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  overflow: hidden;
-}
-.compare-table thead th {
-  padding: 20px 28px;
-  font-size: 0.78rem;
-  font-family: var(--font-mono);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  text-align: left;
-  border-bottom: 1px solid var(--border);
-  color: var(--text-muted);
-}
-.compare-table thead th:last-child { color: var(--accent); }
-.compare-table tbody td {
-  padding: 18px 28px;
-  font-size: 0.9rem;
-  border-bottom: 1px solid var(--border);
-  vertical-align: top;
-}
-.compare-table tbody tr:last-child td { border-bottom: none; }
-.compare-table tbody td:first-child { color: var(--text-muted); }
-.compare-table tbody td:last-child { color: var(--text-primary); }
-
-/* ---- ABOUT ---- */
-.about {
-  padding: var(--section-pad) 0;
-  border-top: 1px solid var(--border);
-  background: var(--bg-secondary);
-}
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 80px;
-  align-items: start;
-}
-.about-intro .section-label { margin-bottom: 16px; }
-.about-intro h2 {
-  font-family: var(--font-display);
-  font-size: clamp(1.8rem, 3vw, 2.4rem);
-  line-height: 1.2;
-  margin-bottom: 24px;
-}
-.about-intro .founder-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.88rem;
-  font-weight: 500;
-  color: var(--accent);
-  margin-top: 20px;
-  transition: gap 0.2s;
-}
-.about-intro .founder-link:hover { gap: 12px; }
-.about-text p {
-  color: var(--text-secondary);
-  font-size: 1rem;
-  line-height: 1.75;
-  margin-bottom: 20px;
-}
-.about-text p:last-child { margin-bottom: 0; }
-
-/* ---- CTA ---- */
-.cta-section {
-  padding: var(--section-pad) 0;
-  border-top: 1px solid var(--border);
-  text-align: center;
-}
-.cta-section h2 {
-  font-family: var(--font-display);
-  font-size: clamp(2.2rem, 4vw, 3.4rem);
-  line-height: 1.15;
-  margin-bottom: 20px;
-}
-.cta-section p {
-  color: var(--text-secondary);
-  font-size: 1.05rem;
-  max-width: 520px;
-  margin: 0 auto 40px;
-  line-height: 1.7;
-}
-.cta-section .cta-actions {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 32px;
-}
-.cta-note {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  font-style: italic;
-}
-
-/* ---- FOOTER ---- */
-footer {
-  padding: 48px 0;
-  border-top: 1px solid var(--border);
-}
-.footer-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-.footer-brand {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-}
-.footer-links {
-  display: flex; gap: 24px;
-}
-.footer-links a {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  transition: color 0.2s;
-}
-.footer-links a:hover { color: var(--text-primary); }
-
-/* ---- ANIMATIONS ---- */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ---- RESPONSIVE ---- */
-@media (max-width: 960px) {
-  .problem-grid { grid-template-columns: 1fr; gap: 48px; }
-  .services-grid { grid-template-columns: 1fr; }
-  .steps { grid-template-columns: repeat(2, 1fr); }
-  .step:first-child { border-radius: 12px 0 0 0; }
-  .step:nth-child(2) { border-radius: 0 12px 0 0; }
-  .step:nth-child(3) { border-radius: 0 0 0 12px; }
-  .step:last-child { border-radius: 0 0 12px 0; }
-  .proof-card { grid-template-columns: 1fr; }
-  .about-grid { grid-template-columns: 1fr; gap: 40px; }
-}
-
-@media (max-width: 720px) {
-  .nav-links {
-    display: none;
+  /* grain overlay */
+  body::before {
+    content: '';
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: var(--bg-primary);
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  a { color: inherit; }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.1rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(24px) saturate(1.2);
+    background: rgba(8, 8, 12, 0.8);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .nav-mark {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    color: var(--text-primary);
+  }
+  .nav-mark span { color: var(--accent); font-weight: 700; }
+
+  .nav-links { display: flex; gap: 2.25rem; list-style: none; align-items: center; }
+
+  .nav-links a {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.25s;
+    letter-spacing: 0.01em;
+  }
+  .nav-links a:hover { color: var(--text-primary); }
+
+  .nav-cta {
+    color: var(--accent) !important;
+    border: 1px solid var(--accent-border);
+    padding: 0.5rem 1.2rem;
+    border-radius: 3px;
+    transition: all 0.25s !important;
+  }
+  .nav-cta:hover {
+    background: var(--accent-muted) !important;
+    color: var(--accent-glow) !important;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    gap: 24px;
-    z-index: 99;
+    padding: 8rem 2.5rem 5rem;
+    max-width: var(--max-w);
+    margin: 0 auto;
   }
-  .nav-links.open { display: flex; }
-  .nav-links a { font-size: 1.2rem; }
-  .nav-toggle { display: block; z-index: 101; }
-  .steps { grid-template-columns: 1fr; }
-  .step { border-radius: 0 !important; }
-  .step:first-child { border-radius: 12px 12px 0 0 !important; }
-  .step:last-child { border-radius: 0 0 12px 12px !important; }
-  .proof-metrics { grid-template-columns: 1fr; }
-  .compare-table { font-size: 0.82rem; }
-  .compare-table thead th, .compare-table tbody td { padding: 14px 16px; }
-}
+
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.75rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.2s forwards;
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+    line-height: 1.1;
+    font-weight: 400;
+    max-width: 850px;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.35s forwards;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent-glow);
+  }
+
+  .hero-body {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.5s forwards;
+  }
+
+  .hero-body p {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    max-width: 520px;
+  }
+
+  .hero-signals {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .h-signal {
+    background: var(--bg-elevated);
+    padding: 1.15rem 1.3rem;
+  }
+
+  .h-signal .hs-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.35rem;
+  }
+
+  .h-signal .hs-val {
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.35;
+  }
+
+  .hero-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.65s forwards;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--bg);
+    background: var(--accent);
+    padding: 0.85rem 2.2rem;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: all 0.3s;
+  }
+  .btn-primary:hover {
+    background: var(--accent-glow);
+    box-shadow: 0 4px 30px rgba(139, 126, 200, 0.2);
+  }
+
+  .btn-ghost {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+  .btn-ghost:hover { color: var(--accent-glow); }
+  .btn-ghost::after { content: ' →'; }
+
+  /* ===== SECTION UTILITY ===== */
+  .section-pad {
+    padding: 7rem 2.5rem;
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 2.5rem;
+  }
+
+  .section-divider {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 2.5rem;
+  }
+  .section-divider hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-border), transparent);
+  }
+
+  /* ===== BELIEF (replaces generic "why" section) ===== */
+  .belief-section {
+    padding: 7rem 2.5rem;
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .belief-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .belief-grid h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.7rem, 2.8vw, 2.3rem);
+    font-weight: 400;
+    line-height: 1.2;
+    position: sticky;
+    top: 6rem;
+  }
+
+  .belief-text p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .belief-text strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  /* ===== PROJECT CAROUSEL ===== */
+  .projects-outer {
+    padding: 7rem 0;
+    overflow: hidden;
+  }
+
+  .projects-header {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 3rem;
+  }
+
+  .projects-header h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.7rem, 2.8vw, 2.3rem);
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  .carousel-controls {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .carousel-btn {
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--border-light);
+    background: var(--bg-elevated);
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    transition: all 0.25s;
+    font-family: var(--sans);
+  }
+  .carousel-btn:hover {
+    border-color: var(--accent-border);
+    color: var(--accent-glow);
+  }
+
+  .carousel-track-wrapper {
+    position: relative;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    overflow: visible;
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: 1.5rem;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: grab;
+    user-select: none;
+  }
+  .carousel-track:active { cursor: grabbing; }
+
+  .project-card {
+    flex: 0 0 380px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.35s, box-shadow 0.35s;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+  }
+  .project-card:hover {
+    border-color: var(--accent-border);
+    box-shadow: 0 8px 40px rgba(139, 126, 200, 0.06);
+  }
+
+  .pc-color-bar {
+    height: 3px;
+    width: 100%;
+  }
+
+  .pc-body {
+    padding: 2rem 2rem 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pc-domain {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.85rem;
+  }
+
+  .pc-title {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .pc-desc {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.65;
+    flex: 1;
+  }
+
+  .pc-footer {
+    padding: 1.25rem 2rem;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .pc-stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pc-stat-val {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    color: var(--accent-glow);
+    line-height: 1;
+  }
+
+  .pc-stat-label {
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-top: 0.25rem;
+  }
+
+  .pc-arrow {
+    font-size: 1.1rem;
+    color: var(--text-dim);
+    transition: color 0.25s, transform 0.25s;
+  }
+  .project-card:hover .pc-arrow {
+    color: var(--accent);
+    transform: translateX(3px);
+  }
+
+  /* ===== MODES (services preview) ===== */
+  .modes-section {
+    padding: 7rem 2.5rem;
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .modes-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+    align-items: end;
+  }
+
+  .modes-header h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.7rem, 2.8vw, 2.3rem);
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  .modes-header p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .modes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .mode-card {
+    background: var(--bg-elevated);
+    padding: 2.5rem 2rem;
+    transition: background 0.35s;
+    text-decoration: none;
+    display: block;
+  }
+  .mode-card:hover { background: var(--bg-surface); }
+
+  .mode-card .mc-verb {
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: var(--accent-glow);
+    line-height: 1;
+    margin-bottom: 0.35rem;
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  .mode-card .mc-arrow-label {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .mode-card .mc-arrow-label span {
+    color: var(--accent);
+    font-size: 0.75rem;
+  }
+
+  .mode-card .mc-outcome {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    color: var(--text-primary);
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  .mode-card h3 {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 0.85rem;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .mode-card p {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+  }
+
+  .mode-card .mc-meta {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+  }
+
+  /* ===== TESTIMONIALS ===== */
+  .testimonials-section {
+    background: var(--bg-elevated);
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 5.5rem 2.5rem;
+  }
+
+  .testimonials-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .test-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+
+  .test-item {
+    position: relative;
+  }
+
+  .test-item blockquote {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .test-item blockquote::before {
+    content: '"';
+    font-family: var(--serif);
+    font-size: 3rem;
+    color: var(--accent);
+    opacity: 0.3;
+    position: absolute;
+    top: -0.6rem;
+    left: -0.15rem;
+    line-height: 1;
+  }
+
+  .test-item cite {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-style: normal;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+  }
+
+  /* ===== CTA ===== */
+  .cta-section {
+    padding: 9rem 2.5rem;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .cta-section h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 400;
+    line-height: 1.15;
+  }
+
+  .cta-right p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .cta-contact {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 1rem;
+  }
+  .cta-contact a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border-light);
+    transition: color 0.25s;
+  }
+  .cta-contact a:hover { color: var(--accent); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    padding: 2.5rem;
+    border-top: 1px solid var(--border-subtle);
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .foot-left {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    letter-spacing: 0.03em;
+  }
+
+  .foot-links { display: flex; gap: 1.75rem; list-style: none; }
+  .foot-links a {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+  .foot-links a:hover { color: var(--text-secondary); }
+
+  /* ===== SCROLL REVEAL ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 960px) {
+    .hero-body { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-signals { max-width: 440px; }
+    .belief-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .belief-grid h2 { position: static; }
+    .modes-header { grid-template-columns: 1fr; gap: 1.5rem; }
+    .modes-grid { grid-template-columns: 1fr; }
+    .test-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .cta-section { grid-template-columns: 1fr; gap: 2.5rem; }
+    .project-card { flex: 0 0 320px; }
+    .nav-links .hide-m { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 0.9rem 1.25rem; }
+    .hero { padding: 6.5rem 1.25rem 3.5rem; }
+    .section-pad, .belief-section, .modes-section { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .projects-header { padding: 0 1.25rem; }
+    .carousel-track-wrapper { padding: 0 1.25rem; }
+    .testimonials-section { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .cta-section { padding: 6rem 1.25rem; }
+    .project-card { flex: 0 0 290px; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav id="nav">
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">FriendTech<span>.</span></a>
-    <div class="nav-links" id="navLinks">
-      <a href="#services">Services</a>
-      <a href="#how">How It Works</a>
-      <a href="#proof">Results</a>
-      <a href="#about">About</a>
-      <a href="#contact" class="nav-cta">Book a Call</a>
-    </div>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
+<nav>
+  <a href="/" class="nav-mark">Friend<span>Tech</span></a>
+  <ul class="nav-links">
+    <li><a href="/services" class="hide-m">Services</a></li>
+    <li><a href="/work" class="hide-m">Work</a></li>
+    <li><a href="/about" class="hide-m">About</a></li>
+    <li><a href="mailto:stefan@friendtechventures.com" class="nav-cta">Let's talk</a></li>
+  </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-label">AI Strategy & Automation</div>
-      <h1>Your team is drowning in coordination, <em>not complexity.</em></h1>
-      <p class="hero-sub">FriendTech Ventures designs AI operations and product strategy for teams that build — so every hour goes toward the work that actually matters.</p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn-primary">Book a Strategy Call →</a>
-        <a href="#services" class="btn-secondary">See What We Do</a>
+  <h1>We build cool sh*t with cool people — and make sure it <em>actually works.</em></h1>
+  <div class="hero-body">
+    <p>FriendTech Ventures is a product and AI studio. We work with founders, operators, and product teams to turn ambiguous ideas into shipped systems — strategy through execution, prototype through production.</p>
+    <div class="hero-signals">
+      <div class="h-signal">
+        <div class="hs-label">Focus</div>
+        <div class="hs-val">AI Systems &amp; Product Strategy</div>
       </div>
+      <div class="h-signal">
+        <div class="hs-label">Base</div>
+        <div class="hs-val">Charlotte, NC</div>
+      </div>
+      <div class="h-signal">
+        <div class="hs-label">Domains</div>
+        <div class="hs-val">Fintech · Enterprise · Startups</div>
+      </div>
+      <div class="h-signal">
+        <div class="hs-label">Approach</div>
+        <div class="hs-val">Build first, deck later</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-cta-row">
+    <a href="mailto:stefan@friendtechventures.com" class="btn-primary">Start a project</a>
+    <a href="/work" class="btn-ghost">See the work</a>
+  </div>
+</section>
+
+<div class="section-divider"><hr></div>
+
+<!-- BELIEF -->
+<section class="belief-section">
+  <div class="belief-grid">
+    <h2 class="reveal">AI accelerates ideaflow.<br>We make sure it<br>goes somewhere.</h2>
+    <div class="belief-text reveal" style="transition-delay: 0.1s;">
+      <p>Most teams aren't short on ideas. They're short on the ability to move from idea to running system — rapidly, with confidence, and without losing the thread along the way.</p>
+      <p><strong>We believe rapid prototyping and experimentation drive value.</strong> Not pitch decks. Not six-month roadmaps. Working software, tested assumptions, and decisions that stick.</p>
+      <p>Whether it's an internal operations problem or a new product bet, the work is the same: define the aim, build the thing, see what breaks, iterate. We do that with founders at the whiteboard and with AI agents in production.</p>
     </div>
   </div>
 </section>
 
-<!-- PROBLEM -->
-<section class="problem">
-  <div class="container">
-    <div class="problem-grid">
-      <div class="problem-left reveal">
-        <div class="section-label">The Real Problem</div>
-        <h2>You don't have a technology problem. You have an operations problem.</h2>
-        <p>Most teams aren't slow because they lack talent. They're slow because coordination eats the calendar. Handoffs drop. Context scatters. Smart people spend their days routing information instead of making decisions.</p>
-      </div>
-      <div class="pain-cards reveal">
-        <div class="pain-card">
-          <div class="pain-icon">01</div>
-          <h4>Inquiry comes in. Nobody owns it.</h4>
-          <p>Leads sit in inboxes. Follow-ups depend on someone remembering. Speed-to-response loses to spreadsheet duty.</p>
+<div class="section-divider"><hr></div>
+
+<!-- PROJECT CAROUSEL -->
+<section class="projects-outer">
+  <div class="projects-header">
+    <h2 class="reveal">Selected work.</h2>
+    <div class="carousel-controls reveal">
+      <button class="carousel-btn" id="prev-btn" aria-label="Previous">←</button>
+      <button class="carousel-btn" id="next-btn" aria-label="Next">→</button>
+    </div>
+  </div>
+  <div class="carousel-track-wrapper">
+    <div class="carousel-track" id="carousel-track">
+
+      <!-- OpenClaw -->
+      <a href="/work/openclaw" class="project-card">
+        <div class="pc-color-bar" style="background: linear-gradient(90deg, var(--accent), var(--accent-warm));"></div>
+        <div class="pc-body">
+          <div class="pc-domain">Multi-Agent AI · Operations</div>
+          <div class="pc-title">OpenClaw &amp; Alfred</div>
+          <p class="pc-desc">Designed and deployed a multi-agent AI system handling inquiry intake, workflow routing, and proposal generation for a community innovation space. Three agents in production, zero new tools for staff to learn.</p>
         </div>
-        <div class="pain-card">
-          <div class="pain-icon">02</div>
-          <h4>Strategy exists. Execution drifts.</h4>
-          <p>The roadmap looked clear in Q1. By Q2, it's a graveyard of half-finished initiatives and avoided tradeoffs.</p>
+        <div class="pc-footer">
+          <div class="pc-stat">
+            <span class="pc-stat-val">15+ hrs/wk</span>
+            <span class="pc-stat-label">Reclaimed from admin</span>
+          </div>
+          <span class="pc-arrow">→</span>
         </div>
-        <div class="pain-card">
-          <div class="pain-icon">03</div>
-          <h4>Your best people do the lowest-value work.</h4>
-          <p>Proposal generation, status updates, scheduling coordination. The work that should take minutes absorbs hours.</p>
+      </a>
+
+      <!-- Esports Fundraising -->
+      <a href="/work/esports-fundraising" class="project-card">
+        <div class="pc-color-bar" style="background: linear-gradient(90deg, #6ec7c8, #8b7ec8);"></div>
+        <div class="pc-body">
+          <div class="pc-domain">Fundraising · Narrative Strategy</div>
+          <div class="pc-title">Esports Seed Round</div>
+          <p class="pc-desc">Rebuilt the pitch deck and investor narrative for a local esports company — restructuring the story around market capture, customer value, and defensibility. Helped the team close their round.</p>
         </div>
-        <div class="pain-card">
-          <div class="pain-icon">04</div>
-          <h4>You bought tools. Nothing changed.</h4>
-          <p>CRM, project management, automation platform — all purchased, half-configured, barely adopted. The stack grew. The problem didn't shrink.</p>
+        <div class="pc-footer">
+          <div class="pc-stat">
+            <span class="pc-stat-val">$10M</span>
+            <span class="pc-stat-label">Seed round closed</span>
+          </div>
+          <span class="pc-arrow">→</span>
         </div>
-      </div>
+      </a>
+
+      <!-- Fintech Product Spinout -->
+      <a href="/work/fintech-product" class="project-card">
+        <div class="pc-color-bar" style="background: linear-gradient(90deg, #c8a87e, #c87e8b);"></div>
+        <div class="pc-body">
+          <div class="pc-domain">Fintech · Product Strategy</div>
+          <div class="pc-title">Financial Health Product</div>
+          <p class="pc-desc">Helped spin out a new financial product designed to give small businesses clarity into their financial health — while serving as a channel into the company's broader product ecosystem.</p>
+        </div>
+        <div class="pc-footer">
+          <div class="pc-stat">
+            <span class="pc-stat-val">0 → 1</span>
+            <span class="pc-stat-label">Product definition</span>
+          </div>
+          <span class="pc-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- AI Messaging Platform -->
+      <a href="/work/ai-messaging" class="project-card">
+        <div class="pc-color-bar" style="background: linear-gradient(90deg, #7ec88b, #7e8bc8);"></div>
+        <div class="pc-body">
+          <div class="pc-domain">AI · Rapid Prototyping</div>
+          <div class="pc-title">AI Messaging Platform</div>
+          <p class="pc-desc">Prototyped and tested an AI-powered messaging platform, iterating on core interaction patterns to accelerate time-to-market and tighten the feedback loop between build and learn.</p>
+        </div>
+        <div class="pc-footer">
+          <div class="pc-stat">
+            <span class="pc-stat-val">Faster</span>
+            <span class="pc-stat-label">Time to market</span>
+          </div>
+          <span class="pc-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Regulated AI Onboarding -->
+      <a href="/work/regulated-ai" class="project-card">
+        <div class="pc-color-bar" style="background: linear-gradient(90deg, #c87ec4, #7e8bc8);"></div>
+        <div class="pc-body">
+          <div class="pc-domain">RegTech · Requirements</div>
+          <div class="pc-title">AI Onboarding for Banks</div>
+          <p class="pc-desc">Defined product requirements for a regulated AI onboarding company integrating into banks and credit unions — navigating compliance constraints while preserving user experience.</p>
+        </div>
+        <div class="pc-footer">
+          <div class="pc-stat">
+            <span class="pc-stat-val">Bank + CU</span>
+            <span class="pc-stat-label">Integration scope</span>
+          </div>
+          <span class="pc-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Kids Fintech -->
+      <a href="/work/kids-fintech" class="project-card">
+        <div class="pc-color-bar" style="background: linear-gradient(90deg, #c8c87e, #7ec8a8);"></div>
+        <div class="pc-body">
+          <div class="pc-domain">Fintech · Go-to-Market</div>
+          <div class="pc-title">Kids' Financial App</div>
+          <p class="pc-desc">Advised on go-to-market positioning and product-specific feedback for a children's financial literacy app — sharpening the value proposition for parents and institutional partners.</p>
+        </div>
+        <div class="pc-footer">
+          <div class="pc-stat">
+            <span class="pc-stat-val">GTM</span>
+            <span class="pc-stat-label">Strategy + product</span>
+          </div>
+          <span class="pc-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Future of Work MVP -->
+      <a href="/work/future-of-work" class="project-card">
+        <div class="pc-color-bar" style="background: linear-gradient(90deg, #8bc87e, #c8a87e);"></div>
+        <div class="pc-body">
+          <div class="pc-domain">Future of Work · MVP</div>
+          <div class="pc-title">Workforce Platform MVP</div>
+          <p class="pc-desc">Helped a future-of-work company build out their minimum viable product — from requirements to working software, with a focus on getting to market and learning fast.</p>
+        </div>
+        <div class="pc-footer">
+          <div class="pc-stat">
+            <span class="pc-stat-val">MVP</span>
+            <span class="pc-stat-label">Shipped</span>
+          </div>
+          <span class="pc-arrow">→</span>
+        </div>
+      </a>
+
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section class="services" id="services">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-label">What We Do</div>
-      <h2>Three ways to work together.</h2>
-      <p>Each engagement is scoped to where you are and what's actually blocking progress.</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card reveal">
-        <div class="service-number">01</div>
-        <h3>The Clarity Sprint</h3>
-        <p class="service-desc">Strategic alignment for product and platform teams stuck in motion without progress. We start with the end, confront current reality, and build a decision structure that survives after we leave.</p>
-        <ul class="service-deliverables">
-          <li>Clearly articulated aim & explicit tradeoffs</li>
-          <li>Prioritization logic tied to outcomes</li>
-          <li>Roadmap leadership can repeat</li>
-          <li>Reusable decision framework</li>
-        </ul>
-        <div class="service-timeline">4–6 weeks · Starts at $15K</div>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-number">02</div>
-        <h3>AI Operations Build</h3>
-        <p class="service-desc">We design, build, and deploy AI automation for your real workflows — intake to execution. Multi-agent systems, tool integrations, and operational pipelines that eliminate the coordination tax.</p>
-        <ul class="service-deliverables">
-          <li>Workflow audit & automation architecture</li>
-          <li>Custom AI agent design & deployment</li>
-          <li>Tool integration across your stack</li>
-          <li>Ongoing monitoring & iteration</li>
-        </ul>
-        <div class="service-timeline">6–12 weeks · Scoped to complexity</div>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-number">03</div>
-        <h3>Fractional Product Leadership</h3>
-        <p class="service-desc">Embedded product leadership for teams navigating regulated environments, platform migrations, or strategic pivots. You get a senior PM who's done this inside enterprise — without the full-time commitment.</p>
-        <ul class="service-deliverables">
-          <li>Product strategy & roadmap ownership</li>
-          <li>Stakeholder alignment & decision facilitation</li>
-          <li>Team capability building</li>
-          <li>Regulatory & compliance navigation</li>
-        </ul>
-        <div class="service-timeline">3–6 months · Let's talk</div>
-      </div>
-    </div>
+<div class="section-divider"><hr></div>
+
+<!-- MODES / SERVICES PREVIEW -->
+<section class="modes-section">
+  <div class="modes-header reveal">
+    <h2>What the studio does.</h2>
+    <p>Every project starts with a verb. What we do for you unlocks what you do next.</p>
+  </div>
+  <div class="modes-grid reveal" style="transition-delay: 0.1s;">
+    <a href="/services#build" class="mode-card">
+      <div class="mc-verb">Build</div>
+      <div class="mc-arrow-label">so you can <span>→</span> <span class="mc-outcome">Launch</span></div>
+      <h3>AI Systems · MVPs · Prototypes</h3>
+      <p>Working software — not decks about software. We build AI agents, operational systems, and minimum viable products designed to ship, learn, and iterate.</p>
+    </a>
+    <a href="/services#shape" class="mode-card">
+      <div class="mc-verb">Shape</div>
+      <div class="mc-arrow-label">so you can <span>→</span> <span class="mc-outcome">Align</span></div>
+      <h3>Product Strategy · Requirements · GTM</h3>
+      <p>When the team can't move because nobody's defined what to build or why — we give the ambiguity form. Requirements, positioning, and direction that gets everyone pointed at the same thing.</p>
+    </a>
+    <a href="/services#frame" class="mode-card">
+      <div class="mc-verb">Frame</div>
+      <div class="mc-arrow-label">so you can <span>→</span> <span class="mc-outcome">Close</span></div>
+      <h3>Pitch Narratives · Fundraising · Positioning</h3>
+      <p>The value is there but the story isn't landing. We restructure how your company is understood — by investors, customers, or partners — so the conversation ends in a yes.</p>
+    </a>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="how" id="how">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-label">How It Works</div>
-      <h2>From stuck to shipped.</h2>
-      <p>Every engagement follows a structure designed to create momentum, not dependency.</p>
-    </div>
-    <div class="steps reveal">
-      <div class="step">
-        <div class="step-num">01</div>
-        <h4>Diagnose</h4>
-        <p>We map your current state — workflows, tools, team structure, decision patterns. Where is time going? Where are handoffs breaking? What's actually blocking progress?</p>
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="testimonials-inner">
+    <div class="section-label reveal">What people say</div>
+    <div class="test-grid">
+      <div class="test-item reveal">
+        <blockquote>If your company is ready for rapid growth, to be challenged in its strategy and ops, and is product-centric — hire him. And if you can't? Consult with him.</blockquote>
+        <cite>— Lynn Luong, Corporate Innovation &amp; Startup Ecosystems</cite>
       </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <h4>Design</h4>
-        <p>We architect the solution — whether that's a decision framework, an automation pipeline, or a product strategy. Scoped tight. Tradeoffs explicit. No 80-page decks.</p>
+      <div class="test-item reveal" style="transition-delay: 0.1s;">
+        <blockquote>He helped navigate one of the most nebulous tasks the company had ever taken on — redesigning the entire onboarding system — and ultimately drove it to the finish line.</blockquote>
+        <cite>— Wisam A, Senior iOS Engineer</cite>
       </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <h4>Build</h4>
-        <p>We build and deploy in your environment. For automation work, that means real agents running real workflows. For strategy, it means decisions made and roadmaps shipped.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">04</div>
-        <h4>Transfer</h4>
-        <p>You own it. We document everything, train your team, and make sure the system runs without us. The goal is always independence, not retainers.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROOF -->
-<section class="proof" id="proof">
-  <div class="container">
-    <div class="proof-card reveal">
-      <div class="proof-content">
-        <div class="section-label">In Practice</div>
-        <h3>From manual coordination to autonomous operations.</h3>
-        <p>A community innovation space was managing event inquiries, member communications, proposal generation, and facility scheduling across email, spreadsheets, and group texts. Staff spent more time routing information than serving members.</p>
-        <p>We designed and deployed a multi-agent AI system that handles inquiry intake, workflow routing, and proposal generation — end to end. The system integrates across WhatsApp, email, and internal tools, with human oversight at every decision point.</p>
-      </div>
-      <div class="proof-metrics">
-        <div class="metric">
-          <div class="metric-value">15+</div>
-          <div class="metric-label">Hours/week reclaimed from admin</div>
-        </div>
-        <div class="metric">
-          <div class="metric-value">&lt;2min</div>
-          <div class="metric-label">Average inquiry response time</div>
-        </div>
-        <div class="metric">
-          <div class="metric-value">3</div>
-          <div class="metric-label">AI agents in production</div>
-        </div>
-        <div class="metric">
-          <div class="metric-value">0</div>
-          <div class="metric-label">New tools staff had to learn</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- COMPARISON -->
-<section class="compare">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-label">Why This Is Different</div>
-      <h2>Not another tool. Not another deck.</h2>
-    </div>
-    <table class="compare-table reveal">
-      <thead>
-        <tr>
-          <th>What You've Tried</th>
-          <th>What FriendTech Does</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Buy software, watch tutorials, configure it yourself</td>
-          <td>We build it, deploy it, and make sure it runs</td>
-        </tr>
-        <tr>
-          <td>Hire a consulting firm that delivers a PDF</td>
-          <td>We deliver decisions, systems, and working software</td>
-        </tr>
-        <tr>
-          <td>One-size-fits-all AI tools that don't fit your workflow</td>
-          <td>Custom-built around your specific operations</td>
-        </tr>
-        <tr>
-          <td>Strategy engagement that ends without execution</td>
-          <td>Every engagement ends with something shipped</td>
-        </tr>
-        <tr>
-          <td>Another dashboard nobody checks</td>
-          <td>Automation that runs behind the scenes — your team changes nothing</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section class="about" id="about">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-intro reveal">
-        <div class="section-label">About</div>
-        <h2>Built by a builder, not a slide deck factory.</h2>
-        <a href="https://stefanfriend.com" class="founder-link" target="_blank">Meet the founder →</a>
-      </div>
-      <div class="about-text reveal">
-        <p>FriendTech Ventures is led by Stefan Friend — a product leader with deep experience building and scaling digital platforms across fintech, SaaS, and regulated enterprise environments.</p>
-        <p>Stefan has shipped products under enterprise security constraints, built community infrastructure for builders in Charlotte through Tabbris Innovation Center, and actively develops multi-agent AI systems that run real business operations. He advises startups through RevTech Labs and speaks on AI strategy, product leadership, and the gap between technology hype and operational reality.</p>
-        <p>FriendTech Ventures exists because most teams don't need more tools — they need someone who understands both the strategy and the systems to make that strategy real.</p>
+      <div class="test-item reveal" style="transition-delay: 0.2s;">
+        <blockquote>He asked difficult questions and is someone I can learn with. If you want an authentic and committed addition to your team, Stefan is your guy.</blockquote>
+        <cite>— Noah Wossen, PM @ Google &amp; 3x Founder</cite>
       </div>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="cta-section" id="contact">
-  <div class="container">
-    <div class="reveal">
-      <h2>Ready to stop managing<br>and start building?</h2>
-      <p>No pitch deck. No pressure. Just a direct conversation about where you are and whether we can help.</p>
-      <div class="cta-actions">
-        <a href="mailto:stefan@friendtechventures.com" class="btn-primary">Book a Strategy Call →</a>
-        <a href="mailto:stefan@friendtechventures.com" class="btn-secondary">Email Directly</a>
-      </div>
-      <div class="cta-note">Usually responds within 24 hours.</div>
-    </div>
+<section class="cta-section">
+  <h2 class="reveal">Got something<br>worth building?</h2>
+  <div class="cta-right">
+    <p class="reveal" style="transition-delay: 0.1s;">No pitch deck required. We start with a conversation about what you're trying to do and whether we're the right fit to help you do it.</p>
+    <a href="mailto:stefan@friendtechventures.com" class="btn-primary reveal" style="transition-delay: 0.2s;">Start a project</a>
+    <div class="cta-contact reveal" style="transition-delay: 0.3s;"><a href="mailto:stefan@friendtechventures.com">stefan@friendtechventures.com</a></div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="container">
-    <div class="footer-inner">
-      <div class="footer-brand">© 2026 FriendTech Ventures LLC · Charlotte, NC</div>
-      <div class="footer-links">
-        <a href="https://stefanfriend.com" target="_blank">Stefan Friend</a>
-        <a href="https://tabbris.com" target="_blank">Tabbris</a>
-        <a href="https://www.linkedin.com/in/stefanpfriend/" target="_blank">LinkedIn</a>
-      </div>
-    </div>
-  </div>
+  <div class="foot-left">© 2026 FriendTech Ventures LLC · Charlotte, NC</div>
 </footer>
 
 <script>
-// Scroll reveal
-const reveals = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-reveals.forEach(el => observer.observe(el));
+  // ---- Scroll Reveal ----
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// Nav scroll
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
-});
+  // ---- Carousel ----
+  const track = document.getElementById('carousel-track');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+  let pos = 0;
+  const EASE = 'transform 0.55s cubic-bezier(0.22, 1, 0.36, 1)';
 
-// Mobile nav
-const toggle = document.getElementById('navToggle');
-const links = document.getElementById('navLinks');
-toggle.addEventListener('click', () => {
-  links.classList.toggle('open');
-});
-links.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => links.classList.remove('open'));
-});
+  function getCardWidth() {
+    const card = track.querySelector('.project-card');
+    if (!card) return 396;
+    return card.offsetWidth + parseFloat(getComputedStyle(track).gap || 24);
+  }
 
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-});
+  function getMaxScroll() {
+    return Math.max(0, track.scrollWidth - track.parentElement.offsetWidth);
+  }
+
+  function snapToCard() {
+    const cw = getCardWidth();
+    pos = Math.round(pos / cw) * cw;
+    pos = Math.min(getMaxScroll(), Math.max(0, pos));
+    track.style.transition = EASE;
+    track.style.transform = `translateX(-${pos}px)`;
+  }
+
+  function slide(dir) {
+    const step = getCardWidth();
+    pos = pos + dir * step;
+    pos = Math.min(getMaxScroll(), Math.max(0, pos));
+    track.style.transition = EASE;
+    track.style.transform = `translateX(-${pos}px)`;
+  }
+
+  prevBtn.addEventListener('click', () => slide(-1));
+  nextBtn.addEventListener('click', () => slide(1));
+
+  // drag + momentum
+  let isDragging = false, startX, scrollStart, lastX, lastTime, velocity;
+
+  function onDragStart(x) {
+    isDragging = true;
+    startX = x;
+    lastX = x;
+    lastTime = Date.now();
+    velocity = 0;
+    scrollStart = pos;
+    track.style.transition = 'none';
+  }
+
+  function onDragMove(x) {
+    if (!isDragging) return;
+    const now = Date.now();
+    const dt = now - lastTime;
+    if (dt > 0) velocity = (lastX - x) / dt;
+    lastX = x;
+    lastTime = now;
+    const diff = startX - x;
+    pos = Math.min(getMaxScroll(), Math.max(0, scrollStart + diff));
+    track.style.transform = `translateX(-${pos}px)`;
+  }
+
+  function onDragEnd() {
+    if (!isDragging) return;
+    isDragging = false;
+    // apply momentum
+    const momentum = velocity * 180;
+    pos = pos + momentum;
+    pos = Math.min(getMaxScroll(), Math.max(0, pos));
+    snapToCard();
+  }
+
+  // mouse
+  track.addEventListener('mousedown', (e) => { e.preventDefault(); onDragStart(e.pageX); });
+  document.addEventListener('mousemove', (e) => onDragMove(e.pageX));
+  document.addEventListener('mouseup', onDragEnd);
+
+  // touch
+  track.addEventListener('touchstart', (e) => onDragStart(e.touches[0].pageX), { passive: true });
+  track.addEventListener('touchmove', (e) => onDragMove(e.touches[0].pageX), { passive: true });
+  track.addEventListener('touchend', onDragEnd);
+
+  // prevent link clicks after drag
+  track.addEventListener('click', (e) => {
+    if (Math.abs(startX - lastX) > 8) e.preventDefault();
+  }, true);
 </script>
 
 </body>
