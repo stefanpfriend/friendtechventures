@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work — FriendTech Ventures</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #08080c;
+    --bg-elevated: #0e0e14;
+    --bg-surface: #14141e;
+    --bg-card: #111119;
+    --text-primary: #e8e6e1;
+    --text-secondary: #9a9890;
+    --text-dim: #555550;
+    --accent: #8b7ec8;
+    --accent-glow: #a594f9;
+    --accent-warm: #c4a0f7;
+    --accent-muted: rgba(139, 126, 200, 0.08);
+    --accent-border: rgba(139, 126, 200, 0.18);
+    --border-subtle: rgba(255,255,255,0.04);
+    --border-light: rgba(255,255,255,0.07);
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'Instrument Sans', -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+    --max-w: 1240px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  a { color: inherit; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.1rem 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    backdrop-filter: blur(24px) saturate(1.2);
+    background: rgba(8, 8, 12, 0.8);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .nav-mark { font-family: var(--sans); font-weight: 700; font-size: 0.95rem; letter-spacing: 0.06em; text-decoration: none; color: var(--text-primary); }
+  .nav-mark span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2.25rem; list-style: none; align-items: center; }
+  .nav-links a { font-family: var(--sans); font-size: 0.82rem; font-weight: 500; color: var(--text-secondary); text-decoration: none; transition: color 0.25s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+  .nav-cta { color: var(--accent) !important; border: 1px solid var(--accent-border); padding: 0.5rem 1.2rem; border-radius: 3px; transition: all 0.25s !important; }
+  .nav-cta:hover { background: var(--accent-muted) !important; color: var(--accent-glow) !important; }
+
+  /* PAGE HEADER */
+  .page-header {
+    padding: 9rem 2.5rem 4rem;
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+  .page-header h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+    font-weight: 400;
+    line-height: 1.12;
+    max-width: 700px;
+    margin-bottom: 1.5rem;
+  }
+  .page-header p {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    max-width: 580px;
+  }
+
+  /* DIVIDER */
+  .divider { max-width: var(--max-w); margin: 0 auto; padding: 0 2.5rem; }
+  .divider hr { border: none; height: 1px; background: linear-gradient(90deg, transparent, var(--accent-border), transparent); }
+
+  /* PROJECT LIST */
+  .projects-section {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 4rem 2.5rem 7rem;
+  }
+
+  .project-row {
+    display: grid;
+    grid-template-columns: 0.35fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    padding: 3.5rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .project-row:first-child { padding-top: 0; }
+  .project-row:last-child { border-bottom: none; }
+
+  .pr-meta {}
+
+  .pr-domain {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.75rem;
+  }
+
+  .pr-stat-val {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    color: var(--accent-glow);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .pr-stat-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .pr-mode {
+    margin-top: 1.5rem;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+  }
+
+  .pr-content h2 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+
+  .pr-content p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  .pr-content strong { color: var(--text-primary); font-weight: 600; }
+
+  /* CTA */
+  .cta-section {
+    padding: 7rem 2.5rem;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    text-align: center;
+  }
+  .cta-section h2 { font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 400; margin-bottom: 1.25rem; }
+  .cta-section p { color: var(--text-secondary); font-size: 1rem; margin-bottom: 2.5rem; max-width: 460px; margin-left: auto; margin-right: auto; }
+  .btn-primary { display: inline-block; font-family: var(--sans); font-size: 0.85rem; font-weight: 600; color: var(--bg); background: var(--accent); padding: 0.85rem 2.2rem; text-decoration: none; border-radius: 3px; transition: all 0.3s; }
+  .btn-primary:hover { background: var(--accent-glow); box-shadow: 0 4px 30px rgba(139, 126, 200, 0.2); }
+  .cta-contact { font-family: var(--mono); font-size: 0.75rem; color: var(--text-dim); margin-top: 1rem; }
+  .cta-contact a { color: var(--text-secondary); text-decoration: none; border-bottom: 1px solid var(--border-light); }
+
+  /* FOOTER */
+  footer { padding: 2.5rem; border-top: 1px solid var(--border-subtle); max-width: var(--max-w); margin: 0 auto; text-align: center; }
+  .foot-left { font-family: var(--mono); font-size: 0.68rem; color: var(--text-dim); }
+
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    .project-row { grid-template-columns: 1fr; gap: 1.5rem; }
+    .nav-links .hide-m { display: none; }
+  }
+  @media (max-width: 600px) {
+    nav { padding: 0.9rem 1.25rem; }
+    .page-header { padding: 7rem 1.25rem 3rem; }
+    .projects-section { padding: 3rem 1.25rem 5rem; }
+    .cta-section { padding: 5rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-mark">Friend<span>Tech</span></a>
+  <ul class="nav-links">
+    <li><a href="/services" class="hide-m">Services</a></li>
+    <li><a href="/work" class="active hide-m">Work</a></li>
+    <li><a href="/about" class="hide-m">About</a></li>
+    <li><a href="mailto:stefan@friendtechventures.com" class="nav-cta">Let's talk</a></li>
+  </ul>
+</nav>
+
+<section class="page-header">
+  <h1 class="reveal">Selected work.</h1>
+  <p class="reveal" style="transition-delay: 0.1s;">Projects across AI systems, product strategy, fundraising, and go-to-market — from prototype to production.</p>
+</section>
+
+<div class="divider"><hr></div>
+
+<section class="projects-section">
+
+  <!-- OpenClaw -->
+  <div class="project-row reveal">
+    <div class="pr-meta">
+      <div class="pr-domain">Multi-Agent AI · Operations</div>
+      <div class="pr-stat-val">15+ hrs/wk</div>
+      <div class="pr-stat-label">Reclaimed from admin</div>
+      <div class="pr-mode">Build → Launch</div>
+    </div>
+    <div class="pr-content">
+      <h2>OpenClaw & Alfred</h2>
+      <p>A community innovation space was managing event inquiries, member communications, proposal generation, and facility scheduling across email, spreadsheets, and group texts. Staff spent more time routing information than serving members.</p>
+      <p>We designed and deployed <strong>OpenClaw</strong> — a multi-agent AI system that handles inquiry intake, workflow routing, and proposal generation end to end. Alfred orchestrates. A Monitor agent runs local Qwen inference. A Drafting agent generates proposals on Claude Sonnet. The system integrates across WhatsApp, email, and internal tools, with human oversight at every decision point.</p>
+      <p>Built on a Mac Mini M4. Google Drive as system of record. Three agents in production, zero new tools for staff to learn. Response time went from hours to under two minutes.</p>
+    </div>
+  </div>
+
+  <!-- Esports -->
+  <div class="project-row reveal">
+    <div class="pr-meta">
+      <div class="pr-domain">Fundraising · Narrative Strategy</div>
+      <div class="pr-stat-val">$10M</div>
+      <div class="pr-stat-label">Seed round closed</div>
+      <div class="pr-mode">Frame → Close</div>
+    </div>
+    <div class="pr-content">
+      <h2>Esports Seed Round</h2>
+      <p>A local esports company had traction but couldn't translate it into an investor narrative that landed. The deck was feature-heavy and market-light. The story of why this mattered — and why now — wasn't coming through.</p>
+      <p>We rebuilt the pitch deck and investor narrative from the ground up — restructuring the story around <strong>market capture, customer value, and defensibility.</strong> Sharpened the competitive positioning, clarified the business model, and coached the founding team through the presentation.</p>
+      <p>The team closed a $10M seed round.</p>
+    </div>
+  </div>
+
+  <!-- Fintech Product -->
+  <div class="project-row reveal">
+    <div class="pr-meta">
+      <div class="pr-domain">Fintech · Product Strategy</div>
+      <div class="pr-stat-val">0 → 1</div>
+      <div class="pr-stat-label">Product definition</div>
+      <div class="pr-mode">Shape → Align</div>
+    </div>
+    <div class="pr-content">
+      <h2>Financial Health Product</h2>
+      <p>A fintech company wanted to spin out a new product that would give small businesses clarity into their financial health — while simultaneously serving as a channel into the company's broader product ecosystem.</p>
+      <p>We helped define the product from scratch: <strong>what it was, who it served, how it fit into the existing portfolio, and what the go-to-market path looked like.</strong> The result was a product definition sharp enough for engineering to build from and leadership to align behind.</p>
+    </div>
+  </div>
+
+  <!-- AI Messaging -->
+  <div class="project-row reveal">
+    <div class="pr-meta">
+      <div class="pr-domain">AI · Rapid Prototyping</div>
+      <div class="pr-stat-val">Faster</div>
+      <div class="pr-stat-label">Time to market</div>
+      <div class="pr-mode">Build → Launch</div>
+    </div>
+    <div class="pr-content">
+      <h2>AI Messaging Platform</h2>
+      <p>An AI messaging startup needed to move faster. The core interaction patterns weren't tight enough and the team was iterating in circles — building features without validating the fundamental user experience.</p>
+      <p>We prototyped and tested the platform's core flows, <strong>making targeted adjustments to accelerate time-to-market</strong> and tighten the feedback loop between building and learning. Focused on getting the right thing in front of users faster, not adding more features.</p>
+    </div>
+  </div>
+
+  <!-- Regulated AI -->
+  <div class="project-row reveal">
+    <div class="pr-meta">
+      <div class="pr-domain">RegTech · Requirements</div>
+      <div class="pr-stat-val">Bank + CU</div>
+      <div class="pr-stat-label">Integration scope</div>
+      <div class="pr-mode">Shape → Align</div>
+    </div>
+    <div class="pr-content">
+      <h2>AI Onboarding for Banks</h2>
+      <p>A regulated AI onboarding company was looking to integrate into banks and credit unions — a domain where compliance constraints are real and a misstep can kill a deal.</p>
+      <p>We helped <strong>define the product requirements</strong> with the precision that regulated environments demand — navigating compliance, data handling, and institutional procurement while preserving the user experience that made the product compelling in the first place.</p>
+    </div>
+  </div>
+
+  <!-- Kids Fintech -->
+  <div class="project-row reveal">
+    <div class="pr-meta">
+      <div class="pr-domain">Fintech · Go-to-Market</div>
+      <div class="pr-stat-val">GTM</div>
+      <div class="pr-stat-label">Strategy + product</div>
+      <div class="pr-mode">Shape → Align</div>
+    </div>
+    <div class="pr-content">
+      <h2>Kids' Financial App</h2>
+      <p>A children's financial literacy app had a working product but an unclear path to market. The value proposition for parents was muddled, and the institutional partnership angle — the real growth lever — wasn't articulated.</p>
+      <p>We advised on <strong>go-to-market positioning and product-specific feedback</strong> — sharpening the value proposition for both parents and institutional partners, and clarifying which channel would drive sustainable growth.</p>
+    </div>
+  </div>
+
+  <!-- Future of Work -->
+  <div class="project-row reveal">
+    <div class="pr-meta">
+      <div class="pr-domain">Future of Work · MVP</div>
+      <div class="pr-stat-val">MVP</div>
+      <div class="pr-stat-label">Shipped</div>
+      <div class="pr-mode">Build → Launch</div>
+    </div>
+    <div class="pr-content">
+      <h2>Workforce Platform MVP</h2>
+      <p>A future-of-work company had a vision but no product. The founding team needed to go from concept to working software — fast enough to validate the idea and start learning from real users.</p>
+      <p>We helped <strong>build out the minimum viable product</strong> — from requirements through working software — with a focus on shipping something testable, not something perfect.</p>
+    </div>
+  </div>
+
+</section>
+
+<div class="divider"><hr></div>
+
+<section class="cta-section">
+  <h2 class="reveal">Got something worth building?</h2>
+  <p class="reveal" style="transition-delay: 0.1s;">Every project on this page started with a conversation. Let's have one.</p>
+  <a href="mailto:stefan@friendtechventures.com" class="btn-primary reveal" style="transition-delay: 0.2s;">Start a project</a>
+  <div class="cta-contact reveal" style="transition-delay: 0.3s;"><a href="mailto:stefan@friendtechventures.com">stefan@friendtechventures.com</a></div>
+</section>
+
+<footer>
+  <div class="foot-left">© 2026 FriendTech Ventures LLC · Charlotte, NC</div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

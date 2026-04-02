@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — FriendTech Ventures</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #08080c;
+    --bg-elevated: #0e0e14;
+    --bg-surface: #14141e;
+    --bg-card: #111119;
+    --text-primary: #e8e6e1;
+    --text-secondary: #9a9890;
+    --text-dim: #555550;
+    --accent: #8b7ec8;
+    --accent-glow: #a594f9;
+    --accent-warm: #c4a0f7;
+    --accent-muted: rgba(139, 126, 200, 0.08);
+    --accent-border: rgba(139, 126, 200, 0.18);
+    --border-subtle: rgba(255,255,255,0.04);
+    --border-light: rgba(255,255,255,0.07);
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'Instrument Sans', -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+    --max-w: 1240px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  a { color: inherit; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.1rem 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    backdrop-filter: blur(24px) saturate(1.2);
+    background: rgba(8, 8, 12, 0.8);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .nav-mark { font-family: var(--sans); font-weight: 700; font-size: 0.95rem; letter-spacing: 0.06em; text-decoration: none; color: var(--text-primary); }
+  .nav-mark span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2.25rem; list-style: none; align-items: center; }
+  .nav-links a { font-family: var(--sans); font-size: 0.82rem; font-weight: 500; color: var(--text-secondary); text-decoration: none; transition: color 0.25s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+  .nav-cta { color: var(--accent) !important; border: 1px solid var(--accent-border); padding: 0.5rem 1.2rem; border-radius: 3px; transition: all 0.25s !important; }
+  .nav-cta:hover { background: var(--accent-muted) !important; color: var(--accent-glow) !important; }
+
+  /* DIVIDER */
+  .divider { max-width: var(--max-w); margin: 0 auto; padding: 0 2.5rem; }
+  .divider hr { border: none; height: 1px; background: linear-gradient(90deg, transparent, var(--accent-border), transparent); }
+
+  /* PAGE HEADER */
+  .page-header {
+    padding: 9rem 2.5rem 4rem;
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+  .page-header h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+    font-weight: 400;
+    line-height: 1.12;
+    max-width: 750px;
+    margin-bottom: 1.5rem;
+  }
+  .page-header h1 em { font-style: italic; color: var(--accent-glow); }
+
+  /* WHY SECTION */
+  .why-section {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 4rem 2.5rem 6rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .why-section p {
+    color: var(--text-secondary);
+    font-size: 1.02rem;
+    line-height: 1.8;
+    margin-bottom: 1.4rem;
+  }
+
+  .why-section strong { color: var(--text-primary); font-weight: 600; }
+
+  /* FOUNDER */
+  .founder-section {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 6rem 2.5rem;
+    display: grid;
+    grid-template-columns: 0.4fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .founder-photo {
+    width: 100%;
+    border-radius: 4px;
+    filter: grayscale(0.15);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .founder-content h2 {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 1.25rem;
+  }
+
+  .founder-content p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .founder-content strong { color: var(--text-primary); font-weight: 600; }
+
+  .founder-links {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .founder-link {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+  .founder-link:hover .fl-name { color: var(--accent-glow); }
+
+  .fl-label {
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.25rem;
+  }
+
+  .fl-name {
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--accent);
+    transition: color 0.25s;
+  }
+
+  /* VALUES */
+  .values-section {
+    background: var(--bg-elevated);
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 5.5rem 2.5rem;
+  }
+
+  .values-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .values-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 2.5rem;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+
+  .value-item h3 {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 400;
+    margin-bottom: 0.65rem;
+    color: var(--text-primary);
+  }
+
+  .value-item p {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+
+  /* CTA */
+  .cta-section {
+    padding: 7rem 2.5rem;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    text-align: center;
+  }
+  .cta-section h2 { font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 400; margin-bottom: 1.25rem; }
+  .cta-section p { color: var(--text-secondary); font-size: 1rem; margin-bottom: 2.5rem; max-width: 460px; margin-left: auto; margin-right: auto; }
+  .btn-primary { display: inline-block; font-family: var(--sans); font-size: 0.85rem; font-weight: 600; color: var(--bg); background: var(--accent); padding: 0.85rem 2.2rem; text-decoration: none; border-radius: 3px; transition: all 0.3s; }
+  .btn-primary:hover { background: var(--accent-glow); box-shadow: 0 4px 30px rgba(139, 126, 200, 0.2); }
+  .cta-contact { font-family: var(--mono); font-size: 0.75rem; color: var(--text-dim); margin-top: 1rem; }
+  .cta-contact a { color: var(--text-secondary); text-decoration: none; border-bottom: 1px solid var(--border-light); }
+
+  /* FOOTER */
+  footer { padding: 2.5rem; border-top: 1px solid var(--border-subtle); max-width: var(--max-w); margin: 0 auto; text-align: center; }
+  .foot-left { font-family: var(--mono); font-size: 0.68rem; color: var(--text-dim); }
+
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    .why-section { grid-template-columns: 1fr; gap: 2rem; }
+    .founder-section { grid-template-columns: 1fr; gap: 2.5rem; }
+    .founder-photo { max-width: 280px; }
+    .values-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .nav-links .hide-m { display: none; }
+  }
+  @media (max-width: 600px) {
+    nav { padding: 0.9rem 1.25rem; }
+    .page-header { padding: 7rem 1.25rem 3rem; }
+    .why-section { padding: 3rem 1.25rem 4rem; }
+    .founder-section { padding: 4rem 1.25rem; }
+    .values-section { padding: 4rem 1.25rem; }
+    .cta-section { padding: 5rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-mark">Friend<span>Tech</span></a>
+  <ul class="nav-links">
+    <li><a href="/services" class="hide-m">Services</a></li>
+    <li><a href="/work" class="hide-m">Work</a></li>
+    <li><a href="/about" class="active hide-m">About</a></li>
+    <li><a href="mailto:stefan@friendtechventures.com" class="nav-cta">Let's talk</a></li>
+  </ul>
+</nav>
+
+<section class="page-header">
+  <h1 class="reveal">A studio for people who'd rather <em>build the thing</em> than talk about it.</h1>
+</section>
+
+<div class="divider"><hr></div>
+
+<section class="why-section">
+  <div class="reveal">
+    <p>FriendTech Ventures exists because most teams don't need another tool, another deck, or another consultant who delivers a PDF and disappears.</p>
+    <p>They need someone who'll sit down, understand the problem, and <strong>help build the solution</strong> — whether that's a multi-agent AI system, a product strategy that actually aligns the team, or a pitch narrative that closes a round.</p>
+    <p>We're not an agency with a bench. We're not a consultancy with a methodology. We're a studio that takes on projects we find interesting, with people we want to work with, in domains where we can make a real difference.</p>
+  </div>
+  <div class="reveal" style="transition-delay: 0.1s;">
+    <p><strong>The thesis is simple:</strong> AI accelerates ideaflow at scale. Rapid prototyping and experimentation drive value — not roadmaps, not decks, not planning cycles that outlast the assumptions they're built on.</p>
+    <p>The best way to figure out what to build is to build something, put it in front of people, and learn. The best way to align a team is to make the aim concrete enough to argue about. The best way to raise money is to tell a story that's true.</p>
+    <p>That's what we do. We build, shape, and frame — so our clients can launch, align, and close.</p>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- FOUNDER -->
+<section class="founder-section">
+  <div class="reveal">
+    <img src="https://stefanfriend.com/images/headshot-dumbo.jpg" alt="Stefan Friend" class="founder-photo">
+  </div>
+  <div class="founder-content reveal" style="transition-delay: 0.1s;">
+    <h2>Stefan Friend</h2>
+    <p>Product leader, builder, and systems thinker. Stefan has spent his career at the intersection of product, fintech, and operations — from early-stage startups to Fortune 100 institutions.</p>
+    <p>He's shipped multi-currency payments platforms, led commercial card product strategy at a top-4 U.S. bank, built a vertical SaaS platform in 48 hours, and runs a multi-agent AI system that handles real operational work daily. He advises fintech startups through RevTech Labs, Charlotte's fintech accelerator, and operates Tabbris Innovation Center — a coworking space and community hub for builders in Charlotte.</p>
+    <p><strong>FriendTech Ventures is the vehicle for the project-based work</strong> — building systems, shaping strategy, and framing narratives for teams that need a practitioner, not a slide deck. For deeper thinking on product leadership, AI, and systems — that lives on the personal site.</p>
+    <div class="founder-links">
+      <a href="https://stefanfriend.com" target="_blank" class="founder-link">
+        <span class="fl-label">Personal</span>
+        <span class="fl-name">stefanfriend.com →</span>
+      </a>
+      <a href="https://tabbris.com" target="_blank" class="founder-link">
+        <span class="fl-label">Coworking</span>
+        <span class="fl-name">Tabbris Innovation Center →</span>
+      </a>
+      <a href="https://riskcast.ai" target="_blank" class="founder-link">
+        <span class="fl-label">Podcast</span>
+        <span class="fl-name">RiskCast →</span>
+      </a>
+      <a href="https://www.linkedin.com/in/stefanpfriend/" target="_blank" class="founder-link">
+        <span class="fl-label">Connect</span>
+        <span class="fl-name">LinkedIn →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- VALUES -->
+<section class="values-section">
+  <div class="values-inner">
+    <div class="values-label reveal">How we work</div>
+    <div class="values-grid">
+      <div class="value-item reveal">
+        <h3>Build first, deck later.</h3>
+        <p>Working software beats a strategy document. We'd rather show you a prototype on day five than a presentation on day thirty.</p>
+      </div>
+      <div class="value-item reveal" style="transition-delay: 0.1s;">
+        <h3>Curiosity over credentials.</h3>
+        <p>The best work comes from genuine interest in the problem. We take on projects because we find them compelling, not because they fit a template.</p>
+      </div>
+      <div class="value-item reveal" style="transition-delay: 0.2s;">
+        <h3>Independence is the goal.</h3>
+        <p>We build systems and make decisions designed to outlast the engagement. The best outcome is a client who doesn't need us anymore.</p>
+      </div>
+      <div class="value-item reveal" style="transition-delay: 0.3s;">
+        <h3>Name the tradeoffs.</h3>
+        <p>Every decision has a cost. We'd rather surface the hard tradeoff early than let it ambush the project later. Clarity beats comfort.</p>
+      </div>
+      <div class="value-item reveal" style="transition-delay: 0.4s;">
+        <h3>Small and sharp.</h3>
+        <p>We're not scaling to fifty people. Staying small means every project gets real attention from someone who's done this before.</p>
+      </div>
+      <div class="value-item reveal" style="transition-delay: 0.5s;">
+        <h3>Ship and learn.</h3>
+        <p>Perfect is the enemy of validated. Get it in front of people, see what breaks, iterate. That's how good products get built.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2 class="reveal">Got something interesting?</h2>
+  <p class="reveal" style="transition-delay: 0.1s;">We're selective about what we take on — but always open to a good conversation.</p>
+  <a href="mailto:stefan@friendtechventures.com" class="btn-primary reveal" style="transition-delay: 0.2s;">Start a conversation</a>
+  <div class="cta-contact reveal" style="transition-delay: 0.3s;"><a href="mailto:stefan@friendtechventures.com">stefan@friendtechventures.com</a></div>
+</section>
+
+<footer>
+  <div class="foot-left">© 2026 FriendTech Ventures LLC · Charlotte, NC</div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
