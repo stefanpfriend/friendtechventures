@@ -27,6 +27,52 @@
     --max-w: 1240px;
   }
 
+  /* ===== LIGHT THEME ===== */
+  [data-theme="light"] {
+    --bg: #f5f4f1;
+    --bg-elevated: #edecea;
+    --bg-surface: #e6e5e2;
+    --bg-card: #efeeeb;
+    --text-primary: #1a1a1f;
+    --text-secondary: #5c5b58;
+    --text-dim: #9a9890;
+    --accent: #6b5eb0;
+    --accent-glow: #7d6fd4;
+    --accent-warm: #9474d4;
+    --accent-muted: rgba(107, 94, 176, 0.08);
+    --accent-border: rgba(107, 94, 176, 0.20);
+    --border-subtle: rgba(0,0,0,0.05);
+    --border-light: rgba(0,0,0,0.08);
+  }
+
+  [data-theme="light"] body::before { opacity: 0.02; }
+  [data-theme="light"] nav { background: rgba(245,244,241,0.85); }
+
+  /* Theme toggle */
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--border-light);
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.4rem;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.25s, border-color 0.25s;
+    width: 34px;
+    height: 34px;
+  }
+  .theme-toggle:hover {
+    color: var(--accent);
+    border-color: var(--accent-border);
+  }
+  .theme-toggle svg { width: 16px; height: 16px; }
+  .theme-toggle .icon-sun { display: block; }
+  .theme-toggle .icon-moon { display: none; }
+  [data-theme="light"] .theme-toggle .icon-sun { display: none; }
+  [data-theme="light"] .theme-toggle .icon-moon { display: block; }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
 
@@ -197,6 +243,7 @@
     .cta-section { padding: 5rem 1.25rem; }
   }
 </style>
+<script>(function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark');document.documentElement.setAttribute('data-theme',t)})();</script>
 </head>
 <body>
 
@@ -207,6 +254,7 @@
     <li><a href="/work" class="active hide-m">Work</a></li>
     <li><a href="/about" class="hide-m">About</a></li>
     <li><a href="mailto:stefan@friendtechventures.com" class="nav-cta">Let's talk</a></li>
+    <li><button class="theme-toggle" aria-label="Toggle theme"><svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button></li>
   </ul>
 </nav>
 
@@ -346,6 +394,17 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
   }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Theme toggle
+  (function() {
+    var toggle = document.querySelector('.theme-toggle');
+    toggle.addEventListener('click', function() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  })();
 </script>
 </body>
 </html>
