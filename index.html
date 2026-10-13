@@ -271,6 +271,26 @@
   .btn-ghost:hover { color: var(--accent-glow); }
   .btn-ghost::after { content: ' →'; }
 
+  .hero-local {
+    margin-top: 1.5rem;
+    max-width: 640px;
+    color: var(--text-secondary);
+    font-size: 0.98rem;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.8s forwards;
+  }
+  .hero-local a {
+    color: var(--accent-glow);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-border);
+    transition: color 0.25s, border-color 0.25s;
+  }
+  .hero-local a:hover {
+    color: var(--text-primary);
+    border-bottom-color: var(--accent);
+  }
+
   /* ===== SECTION UTILITY ===== */
   .section-pad {
     padding: 7rem 2.5rem;
@@ -801,6 +821,7 @@
     <a href="mailto:stefan@friendtechventures.com" class="btn-primary">Start a project</a>
     <a href="/work" class="btn-ghost">See the work</a>
   </div>
+  <p class="hero-local">Run an HVAC, roofing, plumbing, or other service business? <a href="/services#local">See Local Business</a>.</p>
 </section>
 
 <div class="section-divider"><hr></div>
@@ -838,7 +859,7 @@
         <div class="pc-body">
           <div class="pc-domain">Multi-Agent AI · Operations</div>
           <div class="pc-title">Alfred: Multi-Agent Ops System (built on OpenClaw)</div>
-          <p class="pc-desc">Designed and ran a multi-agent AI system, built on the open-source OpenClaw platform, that handled inquiry intake, workflow routing and proposal generation for a community innovation space. Three agents did the work, and staff kept the tools they already used. Retired in July 2026, when better off-the-shelf agents arrived.</p>
+          <p class="pc-desc">Designed and ran a multi-agent AI system, built on the open-source OpenClaw platform, that handled inquiry intake, workflow routing and proposal generation for a community innovation space. Three agents did the work, and staff kept the tools they already used. Retired in early August 2026, when better off-the-shelf agents arrived.</p>
         </div>
         <div class="pc-footer">
           <div class="pc-stat">
