@@ -138,6 +138,52 @@
   }
   .nav-cta:hover { background: var(--accent-muted) !important; color: var(--accent-glow) !important; }
 
+  .nav-menu-li { display: none; }
+  .nav-menu-btn {
+    display: none;
+    background: none;
+    border: 1px solid var(--border-light);
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0;
+    border-radius: 3px;
+    width: 34px;
+    height: 34px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-menu-btn:hover { color: var(--accent); border-color: var(--accent-border); }
+  .nav-menu-btn svg { width: 16px; height: 16px; display: block; }
+  .nav-menu-btn .icon-close { display: none; }
+  .nav-menu-btn[aria-expanded="true"] .icon-menu { display: none; }
+  .nav-menu-btn[aria-expanded="true"] .icon-close { display: block; }
+  .nav-panel {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    padding: 0.2rem 1.15rem 0.7rem;
+    background: rgba(8, 8, 12, 0.96);
+    border-bottom: 1px solid var(--border-subtle);
+    backdrop-filter: blur(24px) saturate(1.2);
+  }
+  [data-theme="light"] .nav-panel { background: rgba(245, 244, 241, 0.96); }
+  .nav-panel a {
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 0.9rem 0.1rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .nav-panel a:last-child { border-bottom: none; }
+  .nav-panel a:hover,
+  .nav-panel a.active { color: var(--text-primary); }
+
   /* PAGE HEADER */
   .page-header {
     padding: 9rem 2.5rem 4rem;
@@ -458,15 +504,44 @@
     .sb-deliverables-grid { grid-template-columns: 1fr; }
     .how-grid { grid-template-columns: 1fr; gap: 1.75rem; }
     .nav-links .hide-m { display: none; }
+    .nav-menu-li,
+    .nav-menu-btn { display: flex; }
+    .nav-panel.is-open { display: flex; }
     .sb-credit { max-width: none; }
   }
   @media (max-width: 600px) {
-    nav { padding: 0.9rem 1.25rem; }
-    .page-header { padding: 7rem 1.25rem 3rem; }
-    .service-block { padding: 4rem 1.25rem; }
-    .how-section { padding: 4rem 1.25rem; }
-    .cta-section { padding: 5rem 1.25rem; }
-    .sb-verb { font-size: 2.5rem; }
+    nav { padding: 0.7rem 1rem; }
+    .nav-mark { letter-spacing: 0.02em; white-space: nowrap; }
+    .nav-links { gap: 0.5rem; flex-shrink: 0; }
+    .nav-links > li { flex-shrink: 0; }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      flex-shrink: 0;
+      line-height: 1;
+      padding: 0.48rem 0.8rem;
+    }
+    .page-header { padding: 5.75rem 1.15rem 2.25rem; }
+    .page-header h1 {
+      font-size: clamp(1.9rem, 8vw, 2.2rem);
+      line-height: 1.18;
+      margin-bottom: 1.1rem;
+    }
+    .offer-nav { gap: 0.65rem 1.1rem; margin-top: 1.35rem; }
+    .divider { padding: 0 1.15rem; }
+    .service-block { padding: 2.75rem 1.15rem; gap: 1.35rem; }
+    .sb-verb { font-size: 2.35rem; }
+    .sb-arrow-label { margin-bottom: 1.15rem; }
+    .sb-right h2 { font-size: 1.4rem; margin-bottom: 1.15rem; }
+    .sb-deliverables { margin-top: 1.35rem; padding-top: 1.35rem; }
+    .how-section { padding: 2.75rem 1.15rem; }
+    .how-section h2 { margin-bottom: 1.5rem; }
+    .cta-section { padding: 3.5rem 1.15rem; }
+    .cta-section h2 { font-size: clamp(1.7rem, 7.5vw, 2.1rem); }
+    .cta-section p { margin-bottom: 1.75rem; }
+    .cta-contact a { overflow-wrap: anywhere; }
+    footer { padding: 2rem 1.15rem; }
   }
 </style>
 <script>(function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark');document.documentElement.setAttribute('data-theme',t)})();</script>
@@ -476,12 +551,18 @@
 <nav>
   <a href="/" class="nav-mark">Friend<span>Tech</span></a>
   <ul class="nav-links">
-    <li><a href="/services" class="active hide-m">Services</a></li>
-    <li><a href="/work" class="hide-m">Work</a></li>
-    <li><a href="/about" class="hide-m">About</a></li>
+    <li class="hide-m"><a href="/services" class="active">Services</a></li>
+    <li class="hide-m"><a href="/work">Work</a></li>
+    <li class="hide-m"><a href="/about">About</a></li>
     <li><a href="mailto:stefan@friendtechventures.com" class="nav-cta">Let's talk</a></li>
     <li><button class="theme-toggle" aria-label="Toggle theme"><svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button></li>
+    <li class="nav-menu-li"><button class="nav-menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-panel"><svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg><svg class="icon-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button></li>
   </ul>
+  <div class="nav-panel" id="nav-panel">
+    <a href="/services" class="active">Services</a>
+    <a href="/work">Work</a>
+    <a href="/about">About</a>
+  </div>
 </nav>
 
 <section class="page-header">
@@ -810,6 +891,36 @@
       var next = current === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
+    });
+  })();
+
+  (function () {
+    var btn = document.querySelector('.nav-menu-btn');
+    var panel = document.querySelector('.nav-panel');
+    var item = document.querySelector('.nav-menu-li');
+    if (!btn || !panel) return;
+    function setOpen(open) {
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      panel.classList.toggle('is-open', open);
+    }
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setOpen(btn.getAttribute('aria-expanded') !== 'true');
+    });
+    panel.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { setOpen(false); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
+    document.addEventListener('click', function (e) {
+      if (!panel.classList.contains('is-open')) return;
+      if (panel.contains(e.target) || btn.contains(e.target)) return;
+      setOpen(false);
+    });
+    window.addEventListener('resize', function () {
+      if (item && getComputedStyle(item).display === 'none') setOpen(false);
     });
   })();
 </script>
